@@ -1,0 +1,50 @@
+title: Cluster Resources
+type: metrics
+streams:
+  - input: httpjson
+    template_path: httpjson.yml.hbs
+    title: Cluster Resources
+    description: Collect Proxmox VE Cluster Resources
+    vars:
+      - name: preserve_original_event
+        type: bool
+        title: Preserve Original Event
+        description: Preserves a raw copy of the original event, added to the field `event.original`
+        multi: false
+        required: true
+        show_user: true
+        default: false
+      - name: interval
+        type: text
+        title: Request Interval
+        description: How frequently requests should be sent. Valid time units are ns, us, ms, s, m, h.
+        multi: false
+        required: true
+        show_user: true
+        default: 30s
+      - name: http_client_timeout
+        type: text
+        title: Request Timeout
+        description: API request timeout. Valid time units are ns, us, ms, s, m, h.
+        default: 30s
+        multi: false
+        required: true
+        show_user: true
+      - name: tags
+        type: text
+        title: Tags
+        multi: true
+        required: false
+        show_user: false
+        default:
+          - proxmox
+          - forwarded
+      - name: processors
+        type: yaml
+        title: Processors
+        multi: false
+        required: false
+        show_user: false
+        description: >
+          Processors are used to reduce the number of fields in the exported event or to enhance the event with metadata. This executes in the agent before the logs are parsed. See [Processors](https://www.elastic.co/guide/en/beats/filebeat/current/filtering-and-enhancing-data.html) for details.
+

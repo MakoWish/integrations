@@ -1,0 +1,79 @@
+rules:
+  - path: /api2/json/cluster/log
+    methods: ["GET"]
+    request_headers:
+      Accept: application/json
+    Authorization:
+      - "PVEAPIToken=root@pam!xxxxxxxxxx=xxxxxxxxxx"
+    responses:
+      - status_code: 200
+        headers:
+          Content-Type:
+            - application/json
+        body: |-
+          {
+            "data": [
+              {"id": "632:VEHost1","msg": "end task UPID:VEHost1:00257603:18DE2B31:65140B66:aptupdate::root@pam: OK","node": "VEHost1","pid": 2455036,"pri": 6,"tag": "pveupdate","time": 1695812457,"uid": "632","user": "root@pam"},
+              {"id": "631:VEHost1","msg": "starting task UPID:VEHost1:00257603:18DE2B31:65140B66:aptupdate::root@pam:","node": "VEHost1","pid": 2455036,"pri": 6,"tag": "pveupdate","time": 1695812454,"uid": "631","user": "root@pam"},
+              {"id": "600:VEHost1","msg": "successful auth for user 'jdoe@contoso.com'","node": "VEHost1","pid": 1907317,"pri": 6,"tag": "pvedaemon","time": 1694637533,"uid": "600","user": "root@pam"},
+              {"id": "599:VEHost1","msg": "end task UPID:VEHost1:001E5156:11A035D7:65018144:aptupdate::root@pam: OK","node": "VEHost1","pid": 1986896,"pri": 6,"tag": "pveupdate","time": 1694597446,"uid": "599","user": "root@pam"},
+              {"id": "598:VEHost1","msg": "starting task UPID:VEHost1:001E5156:11A035D7:65018144:aptupdate::root@pam:","node": "VEHost1","pid": 1986896,"pri": 6,"tag": "pveupdate","time": 1694597444,"uid": "598","user": "root@pam"},
+              {"id": "591:VEHost1","msg": "update VM 109: -ide2 none,media=cdrom,size=1929660K","node": "VEHost1","pid": 1906028,"pri": 6,"tag": "pvedaemon","time": 1694574561,"uid": "591","user": "jdoe@contoso.com"},
+              {"id": "586:VEHost1","msg": "end task UPID:VEHost1:001D0B3D:117C01EA:65012496:qmstart:109:jdoe@contoso.com: OK","node": "VEHost1","pid": 237592,"pri": 6,"tag": "pvedaemon","time": 1694573719,"uid": "586","user": "jdoe@contoso.com"},
+              {"id": "585:VEHost1","msg": "starting task UPID:VEHost1:001D0B3D:117C01EA:65012496:qmstart:109:jdoe@contoso.com:","node": "VEHost1","pid": 237592,"pri": 6,"tag": "pvedaemon","time": 1694573718,"uid": "585","user": "jdoe@contoso.com"}
+            ]
+          }
+  - path: /api2/json/cluster/resources
+    methods: ["GET"]
+    request_headers:
+      Accept: application/json
+      Authorization: PVEAPIToken=root@pam!xxxxxxxxxx=xxxxxxxxxx
+    responses:
+      - status_code: 200
+        headers:
+          Content-Type:
+            - application/json
+        body: |-
+          {
+            "data": [
+              {"cpu": 0.00893723993684581,"disk": 0,"diskread": 50878253568,"diskwrite": 158580154368,"id": "qemu/100","maxcpu": 2,"maxdisk": 55834574848,"maxmem": 2147483648,"mem": 1158106263,"name": "DC1","netin": 17516465046,"netout": 68261832112,"node": "VEHost1","status": "running","template": 0,"type": "qemu","uptime": 3701561,"vmid": 100},
+              {"cpu": 0.26141426815274,"disk": 0,"diskread": 467237011968,"diskwrite": 239694116352,"id": "qemu/101","maxcpu": 4,"maxdisk": 73014444032,"maxmem": 4294967296,"mem": 3317958130,"name": "Server1","netin": 8758552067396,"netout": 418549164144,"node": "VEHost1","status": "running","template": 0,"type": "qemu","uptime": 4194360,"vmid": 101},
+              {"cpu": 0.0320251097736975,"disk": 0,"diskread": 215729945088,"diskwrite": 243759810560,"id": "qemu/102","maxcpu": 4,"maxdisk": 150323855360,"maxmem": 10737418240,"mem": 2987995136,"name": "Server2","netin": 106462869251,"netout": 133341102809,"node": "VEHost1","status": "running","template": 0,"type": "qemu","uptime": 1564403,"vmid": 102},
+              {"cpu": 0.0208535598526402,"disk": 0,"diskread": 4540169390,"diskwrite": 61738027008,"id": "qemu/103","maxcpu": 2,"maxdisk": 77309411328,"maxmem": 4294967296,"mem": 3272708096,"name": "NVR1","netin": 17327751904,"netout": 67999555860,"node": "VEHost1","status": "running","template": 0,"type": "qemu","uptime": 4194347,"vmid": 103},
+              {"cpu": 0,"disk": 0,"diskread": 0,"diskwrite": 0,"id": "qemu/104","maxcpu": 1,"maxdisk": 77309411328,"maxmem": 4294967296,"mem": 0,"name": "ApPDev1","netin": 0,"netout": 0,"node": "VEHost1","status": "stopped","template": 0,"type": "qemu","uptime": 0,"vmid": 104},
+              {"cpu": 0.204811748552716,"disk": 0,"diskread": 383549661004,"diskwrite": 9222670856704,"id": "qemu/106","maxcpu": 4,"maxdisk": 34359738368,"maxmem": 8589934592,"mem": 6253625202,"name": "ElasticSearch","netin": 1017615417979,"netout": 163673024052,"node": "VEHost1","status": "running","template": 0,"type": "qemu","uptime": 4194356,"vmid": 106},
+              {"cpu": 0.00744769994737151,"disk": 0,"diskread": 8279537822,"diskwrite": 229122376704,"id": "qemu/107","maxcpu": 4,"maxdisk": 34359738368,"maxmem": 4294967296,"mem": 3717074944,"name": "Proxy1","netin": 955476827578,"netout": 949207805481,"node": "VEHost1","status": "running","template": 0,"type": "qemu","uptime": 4194339,"vmid": 107},
+              {"cpu": 0.0307838264491356,"disk": 0,"diskread": 44273028126,"diskwrite": 770717203456,"id": "qemu/108","maxcpu": 4,"maxdisk": 45097156608,"maxmem": 12884901888,"mem": 7825920000,"name": "WebDev1","netin": 32087050064,"netout": 1466109792,"node": "VEHost1","status": "running","template": 0,"type": "qemu","uptime": 4194343,"vmid": 108},
+              {"cpu": 0.00248256664912384,"disk": 0,"diskread": 4992132450,"diskwrite": 15526634496,"id": "qemu/109","maxcpu": 2,"maxdisk": 17179869184,"maxmem": 4294967296,"mem": 2564870144,"name": "SQL1","netin": 2006267296,"netout": 12489839,"node": "VEHost1","status": "running","template": 0,"type": "qemu","uptime": 1260979,"vmid": 109},
+              {"cgroup-mode": 2,"cpu": 0.181566588393157,"disk": 98954276864,"id": "node/VEHost1","level": "","maxcpu": 12,"maxdisk": 121049841664,"maxmem": 67339952128,"mem": 43292893184,"node": "VEHost1","status": "online","type": "node","uptime": 4194375},
+              {"content": "images","disk": 1981668347904,"id": "storage/VEHost1/Tier2","maxdisk": 5998901768192,"node": "VEHost1","plugintype": "dir","shared": 0,"status": "available","storage": "Tier2","type": "storage"},
+              {"content": "images","disk": 466699272192,"id": "storage/VEHost1/Tier1","maxdisk": 499727376384,"node": "VEHost1","plugintype": "dir","shared": 0,"status": "available","storage": "Tier1","type": "storage"},
+              {"content": "vztmpl,iso,backup","disk": 98954276864,"id": "storage/VEHost1/local","maxdisk": 121049841664,"node": "VEHost1","plugintype": "dir","shared": 0,"status": "available","storage": "local","type": "storage"},
+              {"content": "images","disk": 161917878272,"id": "storage/VEHost1/data","maxdisk": 171720048640,"node": "VEHost1","plugintype": "dir","shared": 0,"status": "available","storage": "data","type": "storage"}
+            ]
+          }
+  - path: /api2/json/cluster/tasks
+    methods: ["GET"]
+    request_headers:
+      Accept: application/json
+      Authorization: PVEAPIToken=root@pam!xxxxxxxxxx=xxxxxxxxxx
+    responses:
+      - status_code: 200
+        headers:
+          Content-Type:
+            - application/json
+        body: |-
+          {
+            "data": [
+              {"endtime": 1695812457,"id": "","node": "VEHost1","saved": "1","starttime": 1695812454,"status": "OK","type": "aptupdate","upid": "UPID:VEHost1:00257603:18DE2B31:65140B66:aptupdate::root@pam:","user": "root@pam"},
+              {"endtime": 1695539064,"id": "","node": "VEHost1","saved": "1","starttime": 1695538804,"status": "OK","type": "vzdump","upid": "UPID:VEHost1:00106C22:173C9C9B:650FDE74:vzdump::root@pam:","user": "root@pam"},
+              {"endtime": 1694647718,"id": "108","node": "VEHost1","saved": "1","starttime": 1694637538,"status": "OK","type": "vncproxy","upid": "UPID:VEHost1:002069C6:11DD63BC:65021DE2:vncproxy:108:jdoe@contoso.com:","user": "jdoe@contoso.com"},
+              {"endtime": 1694597446,"id": "","node": "VEHost1","saved": "1","starttime": 1694597444,"status": "OK","type": "aptupdate","upid": "UPID:VEHost1:001E5156:11A035D7:65018144:aptupdate::root@pam:","user": "root@pam"},
+              {"endtime": 1694574755,"id": "109","node": "VEHost1","saved": "1","starttime": 1694573974,"status": "OK","type": "vncproxy","upid": "UPID:VEHost1:001D0F74:117C65B7:65012596:vncproxy:109:jdoe@contoso.com:","user": "jdoe@contoso.com"},
+              {"endtime": 1694573719,"id": "109","node": "VEHost1","saved": "1","starttime": 1694573718,"status": "OK","type": "qmstart","upid": "UPID:VEHost1:001D0B3D:117C01EA:65012496:qmstart:109:jdoe@contoso.com:","user": "jdoe@contoso.com"},
+              {"endtime": 1694573662,"id": "","node": "VEHost1","saved": "1","starttime": 1694573661,"status": "OK","type": "imgcopy","upid": "UPID:VEHost1:001D0A69:117BEBA0:6501245D:imgcopy::jdoe@contoso.com:","user": "jdoe@contoso.com"},
+              {"endtime": 1694573301,"id": "105","node": "VEHost1","saved": "1","starttime": 1694573301,"status": "OK","type": "qmdestroy","upid": "UPID:VEHost1:001D0499:117B5ED2:650122F5:qmdestroy:105:jdoe@contoso.com:","user": "jdoe@contoso.com"},
+              {"endtime": 1694573261,"id": "109","node": "VEHost1","saved": "1","starttime": 1694573260,"status": "OK","type": "qmcreate","upid": "UPID:VEHost1:001D03D7:117B4F22:650122CC:qmcreate:109:jdoe@contoso.com:","user": "jdoe@contoso.com"},
+              {"endtime": 1694574775,"id": "102","node": "VEHost1","saved": "1","starttime": 1694572763,"status": "OK","type": "vncproxy","upid": "UPID:VEHost1:001CFCF8:117A8CB7:650120DB:vncproxy:102:jdoe@contoso.com:","user": "jdoe@contoso.com"}
+            ]
+          }

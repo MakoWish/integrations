@@ -1,0 +1,22 @@
+- name: proxmox
+  title: Proxmox
+  type: group
+  fields:
+    - name: id
+      type: keyword
+      ignore_above: 1024
+    - name: node
+      type: keyword
+      ignore_above: 1024
+    - name: pid
+      type: long
+    - name: tag
+      type: keyword
+      ignore_above: 1024
+    - name: time
+      type: date
+    - name: uid
+      type: long
+    - name: user
+      type: keyword
+      ignore_above: 1024

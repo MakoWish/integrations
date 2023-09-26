@@ -1,0 +1,55 @@
+{
+    "input": {
+        "type": "httpjson"
+    },
+    "agent": {
+        "name": "elastic-agent",
+        "id": "e306f7b2-a93d-42f6-8310-93772a845ded",
+        "ephemeral_id": "98765432-10fe-dcba-abcdef0123456789",
+        "type": "filebeat",
+        "version": "8.9.2"
+    },
+    "ecs": {
+        "version": "8.9.0"
+    },
+    "data_stream": {
+        "namespace": "default",
+        "type": "logs",
+        "dataset": "proxmox.resources"
+    },
+    "elastic_agent": {
+        "id": "01234567-89ab-cdef-fedc-ba9876543210",
+        "version": "8.9.2",
+        "snapshot": false
+    },
+    "event": {
+        "original": "{\"content\":\"images\",\"disk\":1981668347904,\"id\":\"storage/VEHost1/Tier2\",\"maxdisk\":5998901768192,\"node\":\"VEHost1\",\"plugintype\":\"dir\",\"shared\":0,\"status\":\"available\",\"storage\":\"Tier2\",\"type\":\"storage\"}",
+        "type": [
+            "info"
+        ],
+        "dataset": "proxmox.resources",
+        "created": "2023-09-21T20:27:02.972Z",
+        "kind": "metric"
+    },
+    "proxmox": {
+        "plugintype": "dir",
+        "node": "VEHost1",
+        "shared": false,
+        "disk": {
+            "total": {
+                "bytes": 5998901768192
+            },
+            "used": {
+                "bytes": 1981668347904
+            }
+        },
+        "id": "storage/VEHost1/Tier2",
+        "storage": "Tier2",
+        "type": "storage",
+        "content": "images",
+        "status": "available"
+    },
+    "tags": [
+        "preserve_original_event"
+    ]
+}

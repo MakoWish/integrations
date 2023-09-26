@@ -1,0 +1,10 @@
+{"id":"632:VEHost1","msg":"end task UPID:VEHost1:00257603:18DE2B31:65140B66:aptupdate::root@pam: OK","node":"VEHost1","pid":2455036,"pri":6,"tag":"pveupdate","time":1695812457,"uid":"632","user":"root@pam"},
+{"id":"631:VEHost1","msg":"starting task UPID:VEHost1:00257603:18DE2B31:65140B66:aptupdate::root@pam:","node":"VEHost1","pid":2455036,"pri":6,"tag":"pveupdate","time":1695812454,"uid":"631","user":"root@pam"},
+{"id":"600:VEHost1","msg":"successful auth for user 'jdoe@contoso.com'","node":"VEHost1","pid":1907317,"pri":6,"tag":"pvedaemon","time":1694637533,"uid":"600","user":"root@pam"},
+{"id":"599:VEHost1","msg":"end task UPID:VEHost1:001E5156:11A035D7:65018144:aptupdate::root@pam: OK","node":"VEHost1","pid":1986896,"pri":6,"tag":"pveupdate","time":1694597446,"uid":"599","user":"root@pam"},
+{"id":"598:VEHost1","msg":"starting task UPID:VEHost1:001E5156:11A035D7:65018144:aptupdate::root@pam:","node":"VEHost1","pid":1986896,"pri":6,"tag":"pveupdate","time":1694597444,"uid":"598","user":"root@pam"},
+{"id":"597:VEHost1","msg":"successful auth for user 'jdoe@contoso.com'","node":"VEHost1","pid":1907317,"pri":6,"tag":"pvedaemon","time":1694579954,"uid":"597","user":"root@pam"},
+{"id":"591:VEHost1","msg":"update VM 109: -ide2 none,media=cdrom,size=1929660K","node":"VEHost1","pid":1906028,"pri":6,"tag":"pvedaemon","time":1694574561,"uid":"591","user":"jdoe@contoso.com"},
+{"id":"586:VEHost1","msg":"end task UPID:VEHost1:001D0B3D:117C01EA:65012496:qmstart:109:jdoe@contoso.com: OK","node":"VEHost1","pid":237592,"pri":6,"tag":"pvedaemon","time":1694573719,"uid":"586","user":"jdoe@contoso.com"},
+{"id":"585:VEHost1","msg":"starting task UPID:VEHost1:001D0B3D:117C01EA:65012496:qmstart:109:jdoe@contoso.com:","node":"VEHost1","pid":237592,"pri":6,"tag":"pvedaemon","time":1694573718,"uid":"585","user":"jdoe@contoso.com"},
+{"id":"584:VEHost1","msg":"update VM 109: -ide2 local:iso/ubuntu-22.04.2-live-server-amd64.iso,media=cdrom","node":"VEHost1","pid":242890,"pri":6,"tag":"pvedaemon","time":1694573701,"uid":"584","user":"jdoe@contoso.com"}

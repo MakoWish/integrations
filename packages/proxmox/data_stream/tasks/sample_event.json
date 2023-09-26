@@ -1,0 +1,48 @@
+{
+    "input": {
+        "type": "httpjson"
+    },
+    "agent": {
+        "name": "elastic-agent",
+        "id": "e306f7b2-a93d-42f6-8310-93772a845ded",
+        "ephemeral_id": "98765432-10fe-dcba-abcdef0123456789",
+        "type": "filebeat",
+        "version": "8.9.2"
+    },
+    "ecs": {
+        "version": "8.9.0"
+    },
+    "data_stream": {
+        "namespace": "default",
+        "type": "logs",
+        "dataset": "proxmox.tasks"
+    },
+    "elastic_agent": {
+        "id": "01234567-89ab-cdef-fedc-ba9876543210",
+        "version": "8.9.2",
+        "snapshot": false
+    },
+    "event": {
+        "duration": 10180000000000,
+        "original": "{\"endtime\":1694647718,\"id\":\"108\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694637538,\"status\":\"OK\",\"type\":\"vncproxy\",\"upid\":\"UPID:VEHost1:002069C6:11DD63BC:65021DE2:vncproxy:108:jdoe@contoso.com:\",\"user\":\"jdoe@contoso.com\"}",
+        "created": "2023-09-21T20:27:02.972Z",
+        "start": "2023-09-13T20:38:58.000Z",
+        "end": "2023-09-13T23:28:38.000Z",
+        "dataset": "proxmox.tasks"
+    },
+    "proxmox": {
+        "upid": "UPID:VEHost1:002069C6:11DD63BC:65021DE2:vncproxy:108:jdoe@contoso.com:",
+        "node": "VEHost1",
+        "saved": "1",
+        "id": "108",
+        "type": "vncproxy",
+        "status": "OK"
+    },
+    "user": {
+        "name": "jdoe",
+        "domain": "contoso.com"
+    },
+    "tags": [
+        "preserve_original_event"
+    ]
+}

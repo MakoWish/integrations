@@ -1,0 +1,293 @@
+---
+description: Pipeline for parsing Proxmox VE cluster resources
+processors:
+  ###################
+  # Initial Parsing #
+  ###################
+  - set:
+      field: ecs.version
+      value: '8.9.0'
+      tag: Set ECS Version
+  - rename:
+      field: message
+      target_field: event.original
+      tag: Copy message to event.original
+  - json:
+      field: event.original
+      target_field: proxmox
+      ignore_failure: true
+      tag: Parse JSON
+
+  ##########################
+  # ECS @timestamp Parsing #
+  ##########################
+  - date:
+      if: ctx.proxmox?.time != null
+      field: proxmox.time
+      target_field: '@timestamp'
+      formats:
+        - UNIX
+      timezone: UTC
+      ignore_failure: true
+      tag: Date filter on proxmox.time
+
+  #######################
+  # ECS Message Parsing #
+  #######################
+  - rename:
+      field: proxmox.msg
+      target_field: message
+      ignore_missing: true
+      tag: Copy proxmox.msg to message
+
+  #####################
+  # ECS Event Parsing #
+  #####################
+  - set:
+      field: event.kind
+      value: metric
+      tag: Set event.kind
+  - append:
+      field: event.type
+      value: info
+      tag: Set event.type
+
+  ###################################
+  # ECS Observer from Host Metadata #
+  ###################################
+  - remove:
+      if: ctx.tags?.contains('forwarded')
+      field: host.architecture
+      ignore_missing: true
+      tag: Remove host.architecture if forwarded
+  - remove:
+      if: ctx.tags?.contains('forwarded')
+      field: host.containerized
+      ignore_missing: true
+      tag: Remove host.containerized if forwarded
+  - remove:
+      if: ctx.tags?.contains('forwarded')
+      field: host.id
+      ignore_missing: true
+      tag: Remove host.id if forwarded
+  - remove:
+      if: ctx.tags?.contains('forwarded')
+      field: host.os.codename
+      ignore_missing: true
+      tag: Remove host.os.codename if forwarded
+  - rename:
+      if: ctx.tags?.contains('forwarded')
+      field: host
+      target_field: observer
+      ignore_missing: true
+      tag: Rename host.* to observer.* if forwarded
+
+  #############################
+  # Proxmox Resources Parsing #
+  #############################
+  # Shared
+  - set:
+      if: ctx.proxmox?.shared != null && ctx.proxmox.shared == 0
+      field: _temp.shared
+      value: false
+      tag: Set proxmox.shared to false
+  - set:
+      if: ctx.proxmox?.shared != null && ctx.proxmox.shared == 1
+      field: _temp.shared
+      value: true
+      tag: Set proxmox.shared to true
+  - convert:
+      field: _temp.shared
+      target_field: proxmox.shared
+      type: boolean
+      ignore_missing: true
+      tag: Convert proxmox.shared to boolean
+
+  # CPU
+  - rename:
+      if: ctx.proxmox?.cpu != null
+      field: proxmox.cpu
+      target_field: proxmox.cpu.total.pct
+      ignore_failure: true
+      tag: Rename proxmox.cpu
+
+  # Disk
+  - rename:
+      if: ctx.proxmox?.disk != null
+      field: proxmox.disk
+      target_field: proxmox.disk.used.bytes
+      ignore_failure: true
+      tag: Rename proxmox.disk
+  - rename:
+      if: ctx.proxmox?.diskread != null
+      field: proxmox.diskread
+      target_field: proxmox.disk.read.bytes
+      ignore_failure: true
+      tag: Rename proxmox.diskread
+  - rename:
+      if: ctx.proxmox?.diskwrite != null
+      field: proxmox.diskwrite
+      target_field: proxmox.disk.write.bytes
+      ignore_failure: true
+      tag: Rename proxmox.diskwrite
+  - rename:
+      if: ctx.proxmox?.maxdisk != null
+      field: proxmox.maxdisk
+      target_field: proxmox.disk.total.bytes
+      ignore_failure: true
+      tag: Rename proxmox.maxdisk
+
+  # Memory
+  - rename:
+      if: ctx.proxmox?.maxmem != null
+      field: proxmox.maxmem
+      target_field: proxmox.memory.total.bytes
+      ignore_failure: true
+      tag: Rename proxmox.maxmem
+  - rename:
+      if: ctx.proxmox?.mem != null
+      field: proxmox.mem
+      target_field: proxmox.memory.used.bytes
+      ignore_failure: true
+      tag: Rename proxmox.mem
+  - script:
+      description: Calculates memory free bytes
+      if: ctx.proxmox?.memory?.total?.bytes != null && ctx.proxmox?.memory?.used?.bytes != null
+      lang: painless
+      ignore_failure: true
+      tag: Painless script to calculate memory free bytes
+      source: |-
+        if (ctx.proxmox?.memory?.free == null) {
+          Map map = new HashMap();
+          ctx.proxmox.memory.put('free', map);
+        }
+        ctx.proxmox.memory.free.bytes = (ctx.proxmox.memory.total.bytes - ctx.proxmox.memory.used.bytes);
+  - script:
+      description: Calculates memory free percent
+      if: ctx.proxmox?.memory?.free?.bytes != null && ctx.proxmox?.memory?.total?.bytes != null
+      lang: painless
+      ignore_failure: true
+      tag: Painless script to calculate memory free percent
+      source: |-
+        if (ctx.proxmox?.memory?.free == null) {
+          Map map = new HashMap();
+          ctx.proxmox.memory.put('free', map);
+        }
+        float freeBytes = ctx.proxmox.memory.free.bytes;
+        float totalBytes = ctx.proxmox.memory.total.bytes;
+        float freePct = freeBytes / totalBytes;
+        ctx.proxmox.memory.free.pct = freePct;
+  - script:
+      description: Calculates memory used percent
+      if: ctx.proxmox?.memory?.used?.bytes != null && ctx.proxmox?.memory?.total?.bytes != null
+      lang: painless
+      ignore_failure: true
+      tag: Painless script to calculate memory used percent
+      source: |-
+        if (ctx.proxmox?.memory?.used == null) {
+          Map map = new HashMap();
+          ctx.proxmox.memory.put('used', map);
+        }
+        float usedBytes = ctx.proxmox.memory.used.bytes;
+        float totalBytes = ctx.proxmox.memory.total.bytes;
+        float usedPct = usedBytes / totalBytes;
+        ctx.proxmox.memory.used.pct = usedPct;
+
+  # Network
+  - rename:
+      if: ctx.proxmox?.netin != null
+      field: proxmox.netin
+      target_field: proxmox.network.ingress.bytes
+      ignore_failure: true
+      tag: Rename proxmox.netin
+  - rename:
+      if: ctx.proxmox?.netout != null
+      field: proxmox.netout
+      target_field: proxmox.network.egress.bytes
+      ignore_failure: true
+      tag: Rename proxmox.netout
+
+  ##############################
+  ## Event Specific Pipelines ##
+  ##############################
+  - pipeline:
+      description: Use a separate pipeline for "node"events
+      if: ctx.proxmox?.type == 'node'
+      name: '{{ IngestPipeline "node" }}'
+      ignore_missing_pipeline: true
+      tag: Call node pipeline
+  - pipeline:
+      description: Use a separate pipeline for "storage" events
+      if: ctx.proxmox?.type == 'storage'
+      name: '{{ IngestPipeline "storage" }}'
+      ignore_missing_pipeline: true
+      tag: Call storage pipeline
+  - pipeline:
+      description: Use a separate pipeline for "pool" events
+      if: ctx.proxmox?.type == 'pool'
+      name: '{{ IngestPipeline "pool" }}'
+      ignore_missing_pipeline: true
+      tag: Call pool pipeline
+  - pipeline:
+      description: Use a separate pipeline for "qemu" (VM) events
+      if: ctx.proxmox?.type == 'qemu'
+      name: '{{ IngestPipeline "qemu" }}'
+      ignore_missing_pipeline: true
+      tag: Call qemu pipeline
+  - pipeline:
+      description: Use a separate pipeline for "lxc" events
+      if: ctx.proxmox?.type == 'lxc'
+      name: '{{ IngestPipeline "lxc" }}'
+      ignore_missing_pipeline: true
+      tag: Call lxc pipeline
+  - pipeline:
+      description: Use a separate pipeline for "openvz" events
+      if: ctx.proxmox?.type == 'openvz'
+      name: '{{ IngestPipeline "openvz" }}'
+      ignore_missing_pipeline: true
+      tag: Call openvz pipeline
+  - pipeline:
+      description: Use a separate pipeline for "sdn" events
+      if: ctx.proxmox?.type == 'sdn'
+      name: '{{ IngestPipeline "sdn" }}'
+      ignore_missing_pipeline: true
+      tag: Call sdn pipeline
+
+  ############
+  # Clean Up #
+  ############
+  - remove:
+      field: 
+        - _temp
+      ignore_missing: true
+  - remove:
+      if: ctx.tags == null || !(ctx.tags.contains('preserve_original_event'))
+      field: event.original
+      ignore_missing: true
+      tag: Remove event.original is not preserving
+  - script:
+      description: Remove null/empty values recursively.
+      lang: painless
+      source: |-
+        boolean drop(Object o) {
+          if (o == null || o == '') {
+            return true;
+          } else if (o instanceof Map) {
+            ((Map) o).values().removeIf(v -> drop(v));
+            return (((Map) o).size() == 0);
+          } else if (o instanceof List) {
+            ((List) o).removeIf(v -> drop(v));
+            return (((List) o).length == 0);
+          }
+          return false;
+        }
+        drop(ctx);
+
+on_failure:
+  - append:
+      field: event.kind
+      value: pipeline_error
+  - append:
+      field: error.message
+      value: 'Processor "{{{_ingest.on_failure_processor_type}}}" with tag "{{{_ingest.on_failure_processor_tag}}}" in pipeline "{{{_ingest.pipeline}}}" failed with message: {{{_ingest.on_failure_message}}}'
+#      value: '{{{ _ingest.on_failure_message }}}'

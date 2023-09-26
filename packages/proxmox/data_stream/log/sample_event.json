@@ -1,0 +1,45 @@
+{
+    "agent": {
+        "name": "elastic-agent",
+        "id": "e306f7b2-a93d-42f6-8310-93772a845ded",
+        "ephemeral_id": "98765432-10fe-dcba-abcdef0123456789",
+        "type": "filebeat",
+        "version": "8.9.2"
+    },
+    "elastic_agent": {
+        "id": "01234567-89ab-cdef-fedc-ba9876543210",
+        "version": "8.9.2",
+        "snapshot": false
+    },
+    "message": "end task UPID:VEHost1:00257603:18DE2B31:65140B66:aptupdate::root@pam: OK",
+    "tags": [
+        "preserve_original_event"
+    ],
+    "input": {
+        "type": "httpjson"
+    },
+    "@timestamp": "2023-09-27T11:00:57.000Z",
+    "ecs": {
+        "version": "8.9.0"
+    },
+    "data_stream": {
+        "namespace": "default",
+        "type": "logs",
+        "dataset": "proxmox.log"
+    },
+    "event": {
+        "severity": 6,
+        "original": "{\"id\":\"632:VEHost1\",\"msg\":\"end task UPID:VEHost1:00257603:18DE2B31:65140B66:aptupdate::root@pam: OK\",\"node\":\"VEHost1\",\"pid\":2455036,\"pri\":6,\"tag\":\"pveupdate\",\"time\":1695812457,\"uid\":\"632\",\"user\":\"root@pam\"}",
+        "dataset": "proxmox.log",
+        "created": "2023-09-21T20:27:02.972Z"
+    },
+    "proxmox": {
+        "node": "VEHost1",
+        "uid": 632,
+        "pid": 2455036,
+        "id": "632:VEHost1",
+        "tag": "pveupdate",
+        "time": 1695812457,
+        "user": "root@pam"
+    }
+}

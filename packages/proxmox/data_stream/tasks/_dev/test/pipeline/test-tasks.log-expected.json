@@ -1,0 +1,163 @@
+{
+    "expected": [
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1695812457,\"id\":\"\",\"node\":\"VEVEHost11\",\"saved\":\"1\",\"starttime\":1695812454,\"status\":\"OK\",\"type\":\"aptupdate\",\"upid\":\"UPID:VEHost1:00257603:18DE2B31:65140B66:aptupdate::root@pam:\",\"user\":\"root@pam\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1695723685,\"id\":\"\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1695723682,\"status\":\"OK\",\"type\":\"aptupdate\",\"upid\":\"UPID:VEHost1:00209E3A:1856B6B2:6512B0A2:aptupdate::root@pam:\",\"user\":\"root@pam\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1695539064,\"id\":\"\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1695538804,\"status\":\"OK\",\"type\":\"vzdump\",\"upid\":\"UPID:VEHost1:00106C22:173C9C9B:650FDE74:vzdump::root@pam:\",\"user\":\"root@pam\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1694934249,\"id\":\"\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694934004,\"status\":\"OK\",\"type\":\"vzdump\",\"upid\":\"UPID:VEHost1:00308F00:13A1C2AD:6506A3F4:vzdump::root@pam:\",\"user\":\"root@pam\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1694854307,\"id\":\"\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694854304,\"status\":\"OK\",\"type\":\"aptupdate\",\"upid\":\"UPID:VEHost1:002C64AB:132825CE:65056CA0:aptupdate::root@pam:\",\"user\":\"root@pam\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1694647718,\"id\":\"108\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694637538,\"status\":\"OK\",\"type\":\"vncproxy\",\"upid\":\"UPID:VEHost1:002069C6:11DD63BC:65021DE2:vncproxy:108:jdoe@contoso.com:\",\"user\":\"jdoe@contoso.com\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1694597446,\"id\":\"\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694597444,\"status\":\"OK\",\"type\":\"aptupdate\",\"upid\":\"UPID:VEHost1:001E5156:11A035D7:65018144:aptupdate::root@pam:\",\"user\":\"root@pam\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1694574755,\"id\":\"109\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694573974,\"status\":\"OK\",\"type\":\"vncproxy\",\"upid\":\"UPID:VEHost1:001D0F74:117C65B7:65012596:vncproxy:109:jdoe@contoso.com:\",\"user\":\"jdoe@contoso.com\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1694573662,\"id\":\"\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694573661,\"status\":\"OK\",\"type\":\"imgcopy\",\"upid\":\"UPID:VEHost1:001D0A69:117BEBA0:6501245D:imgcopy::jdoe@contoso.com:\",\"user\":\"jdoe@contoso.com\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1694573301,\"id\":\"105\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694573301,\"status\":\"OK\",\"type\":\"qmdestroy\",\"upid\":\"UPID:VEHost1:001D0499:117B5ED2:650122F5:qmdestroy:105:jdoe@contoso.com:\",\"user\":\"jdoe@contoso.com\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "original": "{\"endtime\":1694573261,\"id\":\"109\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694573260,\"status\":\"OK\",\"type\":\"qmcreate\",\"upid\":\"UPID:VEHost1:001D03D7:117B4F22:650122CC:qmcreate:109:jdoe@contoso.com:\",\"user\":\"jdoe@contoso.com\"},"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ]
+        },
+        {
+            "ecs": {
+                "version": "8.9.0"
+            },
+            "event": {
+                "duration": 2012000000000,
+                "end": "2023-09-13T03:12:55.000Z",
+                "original": "{\"endtime\":1694574775,\"id\":\"102\",\"node\":\"VEHost1\",\"saved\":\"1\",\"starttime\":1694572763,\"status\":\"OK\",\"type\":\"vncproxy\",\"upid\":\"UPID:VEHost1:001CFCF8:117A8CB7:650120DB:vncproxy:102:jdoe@contoso.com:\",\"user\":\"jdoe@contoso.com\"}",
+                "start": "2023-09-13T02:39:23.000Z"
+            },
+            "proxmox": {
+                "id": "102",
+                "node": "VEHost1",
+                "saved": "1",
+                "status": "OK",
+                "type": "vncproxy",
+                "upid": "UPID:VEHost1:001CFCF8:117A8CB7:650120DB:vncproxy:102:jdoe@contoso.com:"
+            },
+            "tags": [
+                "forwarded",
+                "preserve_original_event"
+            ],
+            "user": {
+                "domain": "contoso.com",
+                "name": "jdoe"
+            }
+        }
+    ]
+}

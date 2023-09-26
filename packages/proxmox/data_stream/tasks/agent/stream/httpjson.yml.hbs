@@ -1,0 +1,38 @@
+config_version: 2
+interval: {{interval}}
+{{#if enable_request_tracer}}
+request.tracer.filename: "../../logs/httpjson/http-request-trace-*.ndjson"
+{{/if}}
+request.method: "GET"
+request.url: {{hostname}}/api2/json/cluster/tasks
+{{#if ssl}}
+request.ssl: {{ssl}}
+{{/if}}
+{{#if http_client_timeout}}
+request.timeout: {{http_client_timeout}}
+{{/if}}
+
+request.transforms:
+  - set:
+      target: "header.Accept"
+      value: "application/json"
+  - set:
+      target: "header.Authorization"
+      value: "PVEAPIToken={{user}}!{{token_id}}={{secret}}"
+
+response.split:
+  target: body.data
+
+tags:
+{{#if preserve_original_event}}
+  - preserve_original_event
+{{/if}}
+{{#each tags as |tag i|}}
+  - {{tag}}
+{{/each}}
+
+processors:
+- add_host_metadata: ~
+{{#if processors}}
+{{processors}}
+{{/if}}

@@ -1,0 +1,164 @@
+- name: proxmox
+  title: Proxmox
+  type: group
+  fields:
+    - name: id
+      type: keyword
+      ignore_above: 1024
+    - name: cgroup-mode
+      type: integer
+    - name: content
+      type: keyword
+      ignore_above: 1024
+    - name: cpu
+      type: group
+      fields:
+        - name: load
+          type: group
+          fields:
+            - name: "1"
+              type: integer
+              description: Average CPU load over the last 1 minute
+            - name: "5"
+              type: integer
+              description: Average CPU load over the last 5 minutes
+            - name: "15"
+              type: integer
+              description: Average CPU load over the last 15 minutes
+        - name: system
+          type: group
+          fields:
+            - name: pct
+              type: float
+              description: Percentage of CPU used by system processes
+        - name: total
+          type: group
+          fields:
+            - name: pct
+              type: float
+              description: Combined percentage of CPU used by system and user processes
+        - name: user
+          type: group
+          fields:
+            - name: pct
+              type: float
+              description: Percentage of CPU used by user processes
+    - name: disk
+      type: group
+      fields:
+        - name: free
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Disk space available in bytes
+            - name: pct
+              type: float
+              description: Percentage of disk space available
+        - name: total
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Total disk space
+        - name: used
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Disk space used in bytes
+            - name: pct
+              type: float
+              description: Percentage of disk space used
+        - name: read
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Bytes read from disk
+        - name: write
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Bytes written to disk
+    - name: maxcpu
+      type: long
+    - name: memory
+      type: group
+      fields:
+        - name: free
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Memory free in bytes
+            - name: pct
+              type: float
+              description: Percentage of memory free
+        - name: total
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Total memory in bytes
+        - name: used
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Memory used in bytes
+            - name: pct
+              type: float
+              description: Percentage of memory used
+    - name: name
+      type: keyword
+      ignore_above: 1024
+    - name: network
+      type: group
+      fields:
+        - name: ingress
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Bytes received since the last metric was reported
+            - name: rate
+              type: float
+              description: The rate in bytes of network traffic being received
+        - name: egress
+          type: group
+          fields:
+            - name: bytes
+              type: integer
+              description: Bytes transmitted since the last metric was reported
+            - name: rate
+              type: float
+              description: The rate in bytes of network traffic being transmitted
+    - name: node
+      type: keyword
+      ignore_above: 1024
+    - name: pid
+      type: long
+    - name: plugintype
+      type: keyword
+      ignore_above: 1024
+    - name: shared
+      type: boolean
+    - name: status
+      type: keyword
+      ignore_above: 1024
+    - name: storage
+      type: keyword
+      ignore_above: 1024
+    - name: template
+      type: integer
+    - name: type
+      type: keyword
+      ignore_above: 1024
+    - name: uid
+      type: long
+    - name: uptime
+      type: long
+    - name: vmid
+      type: long
