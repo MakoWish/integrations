@@ -18,7 +18,7 @@ processors:
       tag: date_faitour_timestamp
       if: ctx.faitour?.timestamp != null
       field: faitour.timestamp
-      target_field: timestamp
+      target_field: '@timestamp'
       formats:
         - ISO8601
       ignore_failure: true
