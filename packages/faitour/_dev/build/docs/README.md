@@ -42,10 +42,18 @@ Please note, there are minimum requirements for running Elastic Agent. For more 
 
 ## Logs
 
-### Faitour
+### Faitour Honeypot
 
-The `events` dataset collects the Faitour honeypot logs.
+The `honeypot` dataset collects the Faitour honeypot logs.
 
-{{event "events"}}
+{{event "honeypot"}}
 
-{{fields "events"}}
+{{fields "honeypot"}}
+
+### Faitour Application
+
+The `application` dataset collects the Faitour application logs.
+
+{{event "application"}}
+
+{{fields "application"}}

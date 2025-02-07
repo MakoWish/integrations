@@ -1,8 +1,0 @@
-pipeline:
-  skip:
-    reason: Logs intentionally contain two values for `event.dataset`.
-    link: none
-static:
-  skip:
-    reason: Logs intentionally contain two values for `event.dataset`.
-    link: none

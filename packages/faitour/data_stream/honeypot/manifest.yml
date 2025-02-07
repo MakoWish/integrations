@@ -1,5 +1,6 @@
-title: "Faitour HoneyPot Events"
+title: "Faitour Honeypot Events"
 type: logs
+dataset: faitour.honeypot
 streams:
   - input: logfile
     title: Faitour Honeypot Events

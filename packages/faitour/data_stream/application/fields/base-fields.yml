@@ -6,7 +6,7 @@
 - name: data_stream.dataset
   type: constant_keyword
   description: Data stream dataset.
-  value: faitour.events
+  value: faitour.application
 - name: data_stream.namespace
   type: constant_keyword
   description: Data stream namespace.
@@ -17,4 +17,4 @@
 - name: event.dataset
   type: constant_keyword
   description: Event dataset
-  value: faitour.events
+  value: faitour.application

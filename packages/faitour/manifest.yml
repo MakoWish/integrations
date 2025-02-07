@@ -21,7 +21,7 @@ icons:
     size: 32x32
     type: image/svg+xml
 policy_templates:
-  - name: events
+  - name: honeypot
     title: Faitour Honeypot Events
     description: Collect events from Faitour honeypots.
     inputs:
